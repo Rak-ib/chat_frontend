@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 
@@ -7,7 +8,14 @@ const Register = () => {
         const email=e.target.email.value;
         const password=e.target.password.value;
         const user={email,password}
-        console.log(user);
+        axios.post("http://localhost:3000/",user,{withCredentials:true})
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+        // console.log(user);
     }
     return (
         <div className="hero min-h-screen bg-green-400">

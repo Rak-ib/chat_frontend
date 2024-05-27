@@ -9,6 +9,7 @@ import './index.css'
 import Register from './Register/Register.jsx';
 import Login from './Login/login.jsx';
 import Inbox from './Inbox/Inbox.jsx';
+import Users from './Users/Users.jsx';
 
 
 
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
       {
         path:"/inbox.jsx",
         element:<Inbox></Inbox>
+      },
+      {
+        path:"/users.jsx",
+        element:<Users></Users>,
       }
     ]
   },

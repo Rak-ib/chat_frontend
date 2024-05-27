@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Link } from "react-router-dom";
 
 
@@ -11,10 +12,27 @@ const Login = () => {
         const password=e.target.password.value;
         const image=e.target.image.files[0]
         
-        const file= new FormData();
-        file.append("file",image)
-        const user={email,password,name,number,role,file}
-        console.log(user);
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("name", name);
+        formData.append("mobile", number);
+        formData.append("role", role);
+        formData.append("email", email);
+        formData.append("password", password);
+        // fetch('http://localhost:3000/',{
+        //     method:"POST",
+        //     content-type
+        // })
+        // const user={email,password,name,number,role,file}
+        axios.post('http://localhost:3000/user/',formData)
+        .then(res=>{
+            console.log(res.data);
+        })
+        .catch(err=>{
+            console.error(err)
+        })
+        
+        console.log(formData);
     }
 
 
@@ -32,13 +50,13 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text text-green-500">Name</span>
                             </label>
-                            <input type="email" placeholder="email" name="name" className="input input-bordered text-green-500" required />
+                            <input  placeholder="email" name="name" className="input input-bordered text-green-500" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text text-green-500">Mobile</span>
                             </label>
-                            <input type="email" placeholder="email" name="mobile" className="input input-bordered text-green-500" required />
+                            <input  placeholder="email" name="mobile" className="input input-bordered text-green-500" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
@@ -50,7 +68,7 @@ const Login = () => {
                             <label className="label">
                                 <span className="label-text text-green-500">Role</span>
                             </label>
-                            <input type="email" placeholder="type user or admin" name="role" className="input input-bordered text-green-500" required />
+                            <input  placeholder="type user or admin" name="role" className="input input-bordered text-green-500" required />
                         </div>
                         <div className="form-control">
                             <label className="label">
